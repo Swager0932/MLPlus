@@ -1,0 +1,20 @@
+#nav-logo{
+    width:100px;
+    /* height: 100px; */
+    padding: 10px;
+    border-radius: 100px;
+    border: 1px solid #000;
+}
+
+#transnav{
+    background: transparent;
+}
+
+.nav-link{
+    color: #FFF;
+    /* font-family: Inder; */
+    /* font-size: 96px; */
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}

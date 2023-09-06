@@ -3,12 +3,14 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import SignUpPage from './pages/SignUp';
 import LoginPage from './pages/Login';
-import SiteHeadingAndNav from './components/SiteHeadingAndNav';
+import SiteHeadingAndNav from './components/Nav';
 import NotFoundPage from './pages/NotFound';
 import UserContext from './contexts/current-user-context';
 import { checkForLoggedInUser } from './adapters/auth-adapter';
 import UsersPage from './pages/Users';
 import UserPage from './pages/User';
+import Lesson from './pages/Lesson'
+// import Quiz from './pages/Quiz'
 
 export default function App() {
   const { setCurrentUser } = useContext(UserContext);
@@ -21,6 +23,8 @@ export default function App() {
     <main>
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/lesson' element={<Lesson />} />
+        {/* <Route path='/quiz' element={<Quiz />} /> */}
         <Route path='/login' element={<LoginPage />} />
         <Route path='/sign-up' element={<SignUpPage />} />
         <Route path='/users' element={<UsersPage />} />
