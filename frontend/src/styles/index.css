@@ -139,8 +139,15 @@ form {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: #000 1px solid ;
+  border: #76bef2 3px solid ;
+}#vocabulary:hover{
+  background-color: #76bef2;
+  scale: 1.1;
+  transition-duration: .2s;
+  color:white;
+  /* font-size: 35 */
 }
+
 #transcript{
   margin-top: 50px;
   height:auto;
@@ -153,6 +160,8 @@ form {
   border: #000 1px solid;
   padding: 20px;
   border-radius: 20px;
+}#lesson-transcript{
+  width: 80%;
 }
 #notes{
   font-size:32px;
@@ -165,7 +174,13 @@ form {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: #000 1px solid;
+  border: #76bef2 3px solid;
+}#notes:hover{
+  background-color: #76bef2;
+  scale: 1.1;
+  transition-duration: .2s;
+  color:white;
+  /* font-size: 35 */
 }
 
 /*  ------------------------COURSES---------------------- */
@@ -232,7 +247,7 @@ test{
 }
 
 .question-text{
-
+font-size: 30px;
 }
 .quiz-choices{
   scale:1.2;
@@ -253,4 +268,43 @@ test{
   font-size: 20px;
   padding: 5%;
   border-radius: 5px;
+}
+
+
+
+userprofile{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#profile-name{
+  color: white;
+  text-align: center;
+}
+#pfp{
+  width: 250px;
+}
+#logout-button{
+  color: white;
+  background-color: transparent;
+  font-size: 20px;
+  padding: 1%;
+  border-radius: 5px;
+}
+.user-update-form-input{
+margin: 5% 0%;
+}
+
+#user-update-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  height: 15rem;
+  background-color: #0000003a;
+  color: white;
+  border: 0px;
+  border-radius: 15px;
 }

@@ -61,7 +61,7 @@ export default function Lesson() {
         <button onClick={() => navigate("/")}  id="vocabulary">Lessons</button>
         <div id="transcript">
           <h1>{transcriptTitle}</h1>
-          <p>{transcript}</p>
+          <p id="lesson-transcript">{transcript}</p>
         </div>
         <button onClick={() => navigate("/quiz/1")} id="notes">Quiz</button>
       </div>

@@ -113,8 +113,7 @@ const shuffleArray = (array) => {
             <div className="final-quiz">
             <h1>Results</h1>
             <h2>
-                {score} out of {questions.length} correct - (
-                {(score / questions.length) * 100}%)
+                {score}/{questions.length}  -  {(score / questions.length) * 100}%
             </h2>
             <button id="restart-button" onClick={restartQuiz}>Restart Quiz</button>
             </div>
