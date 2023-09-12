@@ -1,67 +1,148 @@
-// import { useContext, useEffect, useState } from "react";
-// import { useNavigate, useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
-// import { getLesson } from "../adapters/lesson-adapter";
-
-
-// // let URL = "https://www.youtube.com/embed/6gHfVQ50OnQ?si=ti_apvfSIrjFX4S6";
-// let transcriptTitle = "Transcript"
-// // let transcript ="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enimad minim veniam, quis nostrud exercitation ullamco laboris nisi utaliquip ex ea commodo consequat. Duis aute irure dolor inreprehenderit in voluptate velit esse cillum dolore eu fugiat nullapariatur."
+import { getQuiz } from "../adapters/quiz-adapter.js";
 
 
 
-
-// export default function Lesson() {
-//   const [errorText, setErrorText] = useState(null);
-//   const [title, setTitle] = useState(null);
-//   const [url, setUrl] = useState(null);
-//   const [transcript, setTranscript] = useState(null);
+let transcriptTitle = "Transcript"
 
 
-//   const { id } = useParams();
-//   // console.log(id)
 
-//   useEffect(() => {
-//     const loadLesson = async (id) => {
-//       const [lesson, error] = await getLesson(1);
-//       console.log(lesson[0]);
-//       let currLesson = lesson[0]
-//       // lesson.forEach(lesson => {
 
-//       setTitle(currLesson.title)
-//       setUrl(currLesson.url)
-//       setTranscript(currLesson.transcript)
 
-//       if (error) return setErrorText(error.statusText);
-      
-//     };
+export default function Quiz() {
+  const [errorText, setErrorText] = useState(null);
+  const [showFinalResults, setFinalResults] = useState(false);
+  const [score, setScore] = useState(0);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [questions, setQuestions] = useState([]);
+  const [selectedOption, setSelectedOption] = useState(null);
   
-//     loadLesson();
-//   }, [id]);
+  const { id } = useParams();
+    // console.log(id)
 
-//   return (
-//     <>
-//       <div id="video-section">
-//         <h1>{title}</h1>
-//         <iframe
-//           width="560"
-//           height="315"
-//           src={url}
-//           title="YouTube video player"
-//           frameborder="0"
-//           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-//           allowfullscreen = "yes"
-//         ></iframe>
-//       </div>
+  useEffect(() => {
+    const loadQuiz = async (id) => {
+        const [quizzes, error] = await getQuiz(id);
+        setQuestions(quizzes)
 
-//       <div id="lesson-content">
-//         <div id="vocabulary">Vocab</div>
-//         <div id="transcript">
-//           <h1>{transcriptTitle}</h1>
-//           <p>{transcript}</p>
-//         </div>
-//         <div id="notes">Notes</div>
-//       </div>
-//     </>
-//   );
-// }
+    //   setTitle(lesson.title)
+    //   setUrl(lesson.url)
+    //   setTranscript(lesson.transcript)
+
+      if (error) return setErrorText(error.statusText);
+      
+    };
+  
+    loadQuiz(id);
+  }, [id]);
+
+
+//   console.log(id)
+const shuffleArray = (array) => {
+    return array.slice().sort(() => Math.random() - 0.5);
+  };
+
+  const optionClicked = (selectedAnswer) => {
+    if (currentQuestion < questions.length) {
+      const correctAnswer = questions[currentQuestion].answer;
+
+      if (selectedAnswer === correctAnswer) {
+        setScore(score + 1);
+      } else {
+        setSelectedOption(selectedAnswer);
+      }
+
+      if (currentQuestion + 1 < questions.length) {
+        setCurrentQuestion(currentQuestion + 1);
+        setSelectedOption(null);
+      } else {
+        setFinalResults(true);
+        sendOrUpdateQuizAttemptToBackend();
+      }
+    }
+  };
+
+  const restartQuiz = () => {
+    setScore(0);
+    setCurrentQuestion(0);
+    setFinalResults(false);
+  };
+
+  const sendOrUpdateQuizAttemptToBackend = async () => {
+    const quizAttemptData = {
+      userId: currentUser.id,
+      quiz_id: quizId,
+      percentage: (score / questions.length) * 100,
+      score_count: score,
+    };
+
+    try {
+      // Check if a quiz attempt already exists for the user
+      const [existingAttempt] = await updateQuizAttempt(quizAttemptData);
+
+      if (existingAttempt) {
+        console.log("Updated quiz attempt:", existingAttempt);
+      } else {
+        // If no attempt exists, create a new one
+        const newAttempt = await createQuizAttempt(quizAttemptData);
+        console.log("Created new quiz attempt:", newAttempt);
+      }
+    } catch (error) {
+      console.error("Error sending or updating quiz attempt:", error);
+    }
+  };
+
+  let shuffledChoices = [];
+  if (questions[currentQuestion]) {
+    shuffledChoices = shuffleArray([
+      questions[currentQuestion]?.answer,
+      questions[currentQuestion]?.wrong1,
+      questions[currentQuestion]?.wrong2,
+      questions[currentQuestion]?.wrong3,
+    ]);
+  }
+
+  return (
+    <test>
+      <div id="test-area">
+        <h1>Quiz</h1>
+        <h2 className="current-score">Score: {score}</h2>
+        {showFinalResults ? (
+            <div className="final-quiz">
+            <h1>Results</h1>
+            <h2>
+                {score} out of {questions.length} correct - (
+                {(score / questions.length) * 100}%)
+            </h2>
+            <button id="restart-button" onClick={restartQuiz}>Restart Quiz</button>
+            </div>
+        ) : (
+            <>
+            <h2 className="current-question">
+                Question {currentQuestion + 1} out of {questions.length}
+                </h2>
+            <div className="quiz-card">
+                <h3 className="question-text">
+                {questions[currentQuestion]?.question}
+                </h3>
+            </div>
+            <div className="quiz-choices">
+                {shuffledChoices.map((choice, index) => (
+                <button
+                    className="choices"
+                    key={index}
+                    onClick={() => optionClicked(choice)}
+                >
+                    {choice}
+                </button>
+                ))}
+            </div>
+            </>
+        )}
+      </div>
+    </test>
+
+  );
+}

@@ -63,7 +63,7 @@ export default function Lesson() {
           <h1>{transcriptTitle}</h1>
           <p>{transcript}</p>
         </div>
-        <div id="notes">Quiz</div>
+        <button onClick={() => navigate("/quiz/1")} id="notes">Quiz</button>
       </div>
     </>
   );
