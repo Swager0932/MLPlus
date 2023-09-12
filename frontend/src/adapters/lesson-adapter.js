@@ -1,6 +1,6 @@
 import { fetchHandler, getPatchOptions } from "../utils";
 
-const baseUrl = '/api/lessons';
+const baseUrl = '/api/lessons/';
 
 
 export const getAllLessons = async () => {
@@ -9,7 +9,7 @@ export const getAllLessons = async () => {
   return lessons || [];
 };
 
-export const getLesson = async (id) => fetchHandler(`${baseUrl}`);
+export const getLesson = async (id) => fetchHandler(`${baseUrl} ${id}`);
 
 // export const updateUsername = async ({ id, username }) => (
 //   fetchHandler(`${baseUrl}/${id}`, getPatchOptions({ id, username }))

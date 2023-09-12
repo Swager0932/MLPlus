@@ -21,15 +21,15 @@ export default function LoginPage() {
   if (currentUser) return <Navigate to="/" />;
 
   return <>
-    <h1>Login</h1>
-    <form onSubmit={handleSubmit}>
+    <h1 className="acc-cred-title">Login</h1>
+    <form className="acc-cred-form" onSubmit={handleSubmit}>
       <label htmlFor="username">Username</label>
       <input type="text" autoComplete="username" id="username" name="username" />
 
       <label htmlFor="password">Password</label>
       <input type="password" autoComplete="current-password" id="password" name="password" />
 
-      <button>Log in!</button>
+      <button id="cred-button">Log in!</button>
     </form>
     { !!errorText && <p>{errorText}</p> }
   </>;

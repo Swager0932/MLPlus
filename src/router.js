@@ -8,11 +8,11 @@ const Router = express.Router();
 Router.use(addModelsToRequest);
 
 Router.get('/users', userController.list);
-Router.get('lesson', userController)
+Router.get('/lessons', lessonController.list);
+Router.get('/lessons/:id', lessonController.find)
 Router.post('/users', userController.create);
 Router.get('/users/:id', userController.show);
 
-Router.get('/lessons', lessonController.list);
 
 Router.post('/login', userController.login);
 Router.delete('/logout', userController.logout);
