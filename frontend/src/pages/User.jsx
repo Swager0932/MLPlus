@@ -16,6 +16,7 @@ export default function UserPage() {
   useEffect(() => {
     const loadUser = async () => {
       const [user, error] = await getUser(id);
+      console.log(user);
       if (error) return setErrorText(error.statusText);
       setUserProfile(user);
     };

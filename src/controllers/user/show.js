@@ -6,7 +6,7 @@ const showUser = async (req, res) => {
 
   const user = await User.find(id);
   if (!user) return res.sendStatus(404);
-
+  console.log(user);
   res.send(user);
 };
 

@@ -1,8 +1,13 @@
 :root{
+  overflow: hidden
+}
+#root{
   /* background: conic-gradient(from 219deg at 56.06% 107.53%, #3A8480 0deg, #FFF 360deg); */
   background-image: url('https://wallpaperaccess.com/full/3898796.jpg');
   /* background-size: 100%; */
 }
+
+
 body {
   font-family: Inder, system-ui, Helvetica, Arial, sans-serif;
   margin: 0;
