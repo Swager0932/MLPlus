@@ -10,7 +10,7 @@ import { checkForLoggedInUser } from './adapters/auth-adapter';
 import UsersPage from './pages/Users';
 import UserPage from './pages/User';
 import Lesson from './pages/Lesson'
-// import Quiz from './pages/Quiz'
+import Quiz from './pages/Quiz'
 
 export default function App() {
   const { setCurrentUser } = useContext(UserContext);
@@ -23,8 +23,8 @@ export default function App() {
     <main>
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/lesson' element={<Lesson />} />
-        {/* <Route path='/quiz' element={<Quiz />} /> */}
+        <Route path='/lessons/:id' element={<Lesson />} />
+        <Route path='/quiz/:id' element={<Quiz />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/sign-up' element={<SignUpPage />} />
         <Route path='/users' element={<UsersPage />} />

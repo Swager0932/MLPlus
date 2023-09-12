@@ -38,14 +38,15 @@ export default function UserPage() {
   // But we also have to consider that we may NOT be on the current users page
   const profileUsername = isCurrentUserProfile ? currentUser.username : userProfile.username;
 
-  return <>
-    <h1>{profileUsername}</h1>
-    { !!isCurrentUserProfile && <button onClick={handleLogout}>Log Out</button> }
-    <p>If the user had any data, here it would be</p>
-    <p>Fake Bio or something</p>
+  return <userprofile>
+    <h1 id="profile-name" >{profileUsername}</h1>
+    <img id="pfp" src="https://th.bing.com/th/id/R.0f58f19c3986e66505d8a7ddd6230e84?rik=dRs98PMLxIh0lg&riu=http%3a%2f%2fclipart-library.com%2fimages_k%2fmystery-man-silhouette%2fmystery-man-silhouette-9.png&ehk=UEAkPBtXYeWkK2TmXPiBBko8Qa0bYvkT4Y7hmKY5S2E%3d&risl=&pid=ImgRaw&r=0"></img>
+
+
     {
       !!isCurrentUserProfile
         && <UpdateUsernameForm currentUser={currentUser} setCurrentUser={setCurrentUser}/>
     }
-  </>;
+    { !!isCurrentUserProfile && <button id="logout-button" onClick={handleLogout}>Log Out</button> }
+  </userprofile>;
 }

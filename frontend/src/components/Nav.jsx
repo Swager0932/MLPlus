@@ -11,7 +11,7 @@ export default function SiteHeadingAndNav() {
     <nav>
       <ul>
         <li><NavLink className="nav-link" NavLink to='/'>Courses</NavLink></li>
-        <li><NavLink className="nav-link"   to='/users' end={true}>Forum [ Pending ]</NavLink></li>
+        {/* <li><NavLink className="nav-link"   to='/users' end={true}>Forum [ Pending ]</NavLink></li> */}
         {
           currentUser
             ? <li><NavLink className="nav-link"  to={`/users/${currentUser.id}`}>{currentUser.username}</NavLink></li>

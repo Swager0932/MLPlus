@@ -36,8 +36,8 @@ export default function SignUpPage() {
   };
 
   return <>
-    <h1>Sign Up</h1>
-    <form onSubmit={handleSubmit} onChange={handleChange}>
+    <h1 className="acc-cred-title">Sign Up</h1>
+    <form className="acc-cred-form" onSubmit={handleSubmit} onChange={handleChange}>
       <label htmlFor="username">Username</label>
       <input
         autoComplete="off"
@@ -63,9 +63,9 @@ export default function SignUpPage() {
         <input autoComplete="off" type="password" id="password-confirm" name="passwordConfirm" />
       */}
 
-      <button>Sign Up Now!</button>
+      <button id="cred-button">Sign Up Now!</button>
     </form>
     { !!errorText && <p>{errorText}</p> }
-    <p>Already have an account with us? <Link to="/login">Log in!</Link></p>
+    <p id="cred-redir">Already have an account with us? <Link to="/login">Log in!</Link></p>
   </>;
 }
