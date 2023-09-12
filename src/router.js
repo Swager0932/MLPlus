@@ -7,6 +7,7 @@ const Router = express.Router();
 Router.use(addModelsToRequest);
 
 Router.get('/users', userController.list);
+Router.get('lesson', userController)
 Router.post('/users', userController.create);
 Router.get('/users/:id', userController.show);
 
