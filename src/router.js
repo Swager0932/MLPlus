@@ -23,6 +23,8 @@ Router.get('/me', userController.showMe);
 // These actions require authentication (only valid logged in users can do these things)
 // The checkAuthentication middleware will only run for these specified routes.
 Router.patch('/users/:id', checkAuthentication, userController.update);
+Router.patch('/users/:id', checkAuthentication, userController.pro);
+
 Router.get('/logged-in-secret', checkAuthentication, (req, res) => {
   res.send({ msg: 'The secret is: there is no secret.' });
 });

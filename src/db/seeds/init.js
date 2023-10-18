@@ -21,7 +21,7 @@ exports.seed = async (knex) => {
   await Quiz.create('How do we see our changes on our page?', "Reload the browser" , "reload your IDE" , "Restart the preview" , "Reload your terminal" , 1)
   await Quiz.create('What is the default address when we preview our code?', "127.0.0.1/localhost" , "https://preview.com" , "https://local.preview.com" , "https://localhost" , 1)
   await Quiz.create('What is “:8080” in the url?', "The port" , "The link" , "The tag" , "The rock" , 1)
-
+////////////////////////////////////////
   await Quiz.create('?', "" , "" , "" , "" , 2)
 
 };

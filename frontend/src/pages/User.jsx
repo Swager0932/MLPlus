@@ -40,7 +40,7 @@ export default function UserPage() {
 
   return <userprofile>
     <h1 id="profile-name" >{profileUsername}</h1>
-    <img id="pfp" src="https://th.bing.com/th/id/R.0f58f19c3986e66505d8a7ddd6230e84?rik=dRs98PMLxIh0lg&riu=http%3a%2f%2fclipart-library.com%2fimages_k%2fmystery-man-silhouette%2fmystery-man-silhouette-9.png&ehk=UEAkPBtXYeWkK2TmXPiBBko8Qa0bYvkT4Y7hmKY5S2E%3d&risl=&pid=ImgRaw&r=0"></img>
+    <img id="pfp" src={"https://th.bing.com/th/id/R.0f58f19c3986e66505d8a7ddd6230e84?rik=dRs98PMLxIh0lg&riu=http%3a%2f%2fclipart-library.com%2fimages_k%2fmystery-man-silhouette%2fmystery-man-silhouette-9.png&ehk=UEAkPBtXYeWkK2TmXPiBBko8Qa0bYvkT4Y7hmKY5S2E%3d&risl=&pid=ImgRaw&r=0"}></img>
 
 
     {
